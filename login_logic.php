@@ -5,11 +5,12 @@
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user = $_POST['username'];
     $pass = $_POST['password'];
-}
+
 
  $stmt=$pdo->prepare("select * from users where username = ? ");
  $stmt->execute([$user]);
  $result=$stmt->fetch();
+}
  if($result && password_verify($pass,$result["password"]))
     {
         session_start();
